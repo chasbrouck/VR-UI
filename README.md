@@ -1,6 +1,5 @@
 <!-- SETUP -->
-install node
-
 npm install
 
-run 'node index.js' to launch VR-UI
+<!-- To Start VR-UI -->
+run 'node index.js'
