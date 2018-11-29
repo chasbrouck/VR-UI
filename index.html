@@ -1,0 +1,89 @@
+<!doctype html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0">
+  <title>VR Box UI</title>
+
+  <!-- bomb ass css -->
+  <link rel="stylesheet"
+        href="css/app.css">
+
+  <!-- scripts -->
+  <script src="https://code.jquery.com/jquery-3.3.1.min.js"
+          integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+          crossorigin="anonymous"></script>
+</head>
+
+<body>
+  <div class="vrBox">
+    <!-- SIDE BUTTON LEFT -->
+    <a class="side"
+       id="sideButton1"
+       onclick="buttonPress(this)">
+      <div class="sideButtonLeft">
+        <div class="sideButtonInner"></div>
+      </div>
+    </a>
+
+    <!-- TOP BUTTONS -->
+    <div class="vrBoxTop">
+      <div class="buttonsTop">
+        <div class="buttonRow">
+          <!-- ROW 1 -->
+          <a class="button"
+             id="topButton1"
+             onclick="buttonPress(this)">
+            <div class="buttonInside"></div>
+          </a>
+          <a class="button"
+             id="topButton2"
+             onclick="buttonPress(this)">
+            <div class="buttonInside"></div>
+          </a>
+          <a class="button"
+             id="topButton3"
+             onclick="buttonPress(this)">
+            <div class="buttonInside"></div>
+          </a>
+        </div>
+        <!-- ROW 2 -->
+        <div class="buttonRow">
+          <a class="button"
+             id="topButton4"
+             onclick="buttonPress(this)">
+            <div class="buttonInside"></div>
+          </a>
+          <a class="button"
+             id="topButton5"
+             onclick="buttonPress(this)">
+            <div class="buttonInside"></div>
+          </a>
+          <a class="button"
+             id="topButton6"
+             onclick="buttonPress(this)">
+            <div class="buttonInside"></div>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- SIDE BUTTON RIGHT -->
+    <a class="side"
+       id="sideButton2"
+       onclick="buttonPress(this)">
+      <div class="sideButtonRight">
+        <div class="sideButtonInner"></div>
+      </div>
+    </a>
+
+  </div>
+
+  <script src="js/button.js">
+  </script>
+
+</body>
+
+</html>

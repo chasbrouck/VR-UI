@@ -1,0 +1,123 @@
+/* GENERAL */
+body {
+  background-color: #000000;
+}
+
+/* VR BOX ROOT */
+.vrBox {
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+}
+
+.vrBoxTop {
+  position: relative;
+  width: 80vh;
+  max-width: 80%;
+  height: 80vh;
+  margin-top: 10vh;
+  border: 10px solid #FFFFFF;
+}
+
+/* TOP BUTTON */
+.buttonsTop {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  width: 80%;
+  margin: auto;
+  margin-bottom: 30px;
+}
+
+.buttonRow {
+  display: flex;
+  justify-content: space-around;
+  margin-bottom: 20px;
+}
+
+.button {
+  position: relative;
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  background-color: #FFFFFF;
+}
+
+.buttonInside {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  width: 80%;
+  height: 80%;
+  margin: auto;
+  transition: 0.2s ease;
+  border-radius: 50%;
+  background-color: #D9D9D9;
+}
+
+.button:hover .buttonInside {
+  background-color: #A6A6A6;
+}
+
+.button.active .buttonInside {
+  background-color: #737373;
+}
+.button:hover.active .buttonInside {
+  background-color: #737373;
+}
+
+
+/* SIDE BUTTON */
+.side {
+  position: relative;
+  width: 100px;
+  height: 150px;
+  margin-bottom: 150px;
+}
+
+.sideButtonRight {
+  position: relative;
+  width: 15px;
+  height: 100px;
+  background-color: #FFFFFF;
+}
+
+.sideButtonLeft {
+  position: relative;
+  float: right;
+  width: 15px;
+  height: 100px;
+  background-color: #FFFFFF;
+}
+
+.sideButtonInner {
+  position: absolute;
+  top: 10%;
+  width: 20px;
+  height: 80%;
+  transition: 0.2s ease;
+  background-color: #FF3333;
+}
+
+.sideButtonLeft .sideButtonInner {
+  right: 15px;
+}
+
+.sideButtonRight .sideButtonInner {
+  left: 15px;
+}
+
+.side:hover .sideButtonInner {
+  width: 17px;
+}
+
+.side.active .sideButtonInner {
+  width: 10px;
+}
+
+.side:hover.active .sideButtonInner {
+  width: 10px;
+}
