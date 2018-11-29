@@ -9,12 +9,8 @@
 
   <!-- bomb ass css -->
   <link rel="stylesheet"
-        href="css/app.css">
-
-  <!-- scripts -->
-  <script src="https://code.jquery.com/jquery-3.3.1.min.js"
-          integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
-          crossorigin="anonymous"></script>
+        type="text/css"
+        href="/css/app.css" />
 </head>
 
 <body>
@@ -30,6 +26,8 @@
 
     <!-- TOP BUTTONS -->
     <div class="vrBoxTop">
+      <div class="statusText"
+           id="status"></div>
       <div class="buttonsTop">
         <div class="buttonRow">
           <!-- ROW 1 -->
@@ -81,7 +79,35 @@
 
   </div>
 
-  <script src="js/button.js">
+  <!-- scripts -->
+  <script src="/socket.io/socket.io.js"></script>
+  <script src="https://code.jquery.com/jquery-3.3.1.min.js"
+          integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+          crossorigin="anonymous"></script>
+  <script>
+    var socket = io();
+
+    function buttonPress(item) {
+      var id = $(item).attr("id");
+
+      //socket emit
+      socket.emit('button press', id);
+
+      //temporary button styling
+      $(item).addClass("active");
+      setTimeout(
+        function() {
+          $(item).removeClass("active");
+        }, 500);
+    }
+
+    socket.on('status update', function(msg) {
+      $('#status').text(msg);
+      setTimeout(
+        function() {
+          $('#status').text('');
+        }, 500);
+    });
   </script>
 
 </body>
