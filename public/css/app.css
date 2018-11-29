@@ -2,11 +2,58 @@ body {
   background-color: #000000;
 }
 
+.content {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+/* CONTROL BOX */
+.controlPanel {
+  position: relative;
+  width: 25%;
+  max-width: 500px;
+  height: 80vh;
+  max-height: 700px;
+  margin-top: 10vh;
+  margin-right: 100px;
+  border: 10px solid #FFFFFF;
+}
+
+.controlContent {
+  margin: 20px;
+}
+
+.controlTitle {
+  color: #FFFFFF;
+  font-family: sans-serif;
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.controlRow {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+@media only screen and (max-width: 1150px) {
+  .controlPanel {
+    position: relative;
+    width: 80%;
+    max-width: 80%;
+    height: 200px;
+    margin: auto;
+    margin-top: 50px;
+  }
+}
+
 /* VR BOX ROOT */
 .vrBox {
   display: flex;
   align-items: flex-end;
   justify-content: center;
+  width: 60%;
 }
 
 .vrBoxTop {
@@ -14,6 +61,7 @@ body {
   width: 80vh;
   max-width: 80%;
   height: 80vh;
+  max-height: 700px;
   margin-top: 10vh;
   border: 10px solid #FFFFFF;
 }
@@ -58,15 +106,32 @@ body {
 }
 
 .button:hover .buttonInside {
-  background-color: #A6A6A6;
+  filter: brightness(80%);
 }
 
 .button.active .buttonInside {
-  background-color: #737373;
+  filter: brightness(60%);
 }
 .button:hover.active .buttonInside {
-  background-color: #737373;
+  filter: brightness(60%);
 }
+
+@media only screen and (max-width: 1150px) {
+  .vrBox {
+    width: 100%;
+  }
+
+  .vrBoxTop {
+    max-width: 80%;
+    height: 300px;
+    margin-top: 150px;
+  }
+
+  .buttonsTop {
+    margin-bottom: 20px;
+  }
+}
+
 
 
 /* SIDE BUTTON */
@@ -131,4 +196,17 @@ body {
   color: #FFFFFF;
   font-family: sans-serif;
   font-size: 40px;
+}
+
+@media only screen and (max-width: 1150px) {
+  .side {
+    position: relative;
+    width: 100px;
+    height: 150px;
+    margin-bottom: 100px;
+  }
+
+  .statusText {
+    top: -100px;
+  }
 }

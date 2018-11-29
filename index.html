@@ -14,69 +14,94 @@
 </head>
 
 <body>
-  <div class="vrBox">
-    <!-- SIDE BUTTON LEFT -->
-    <a class="side"
-       id="sideButton1"
-       onclick="buttonPress(this)">
-      <div class="sideButtonLeft">
-        <div class="sideButtonInner"></div>
-      </div>
-    </a>
+  <div class="content">
+    <div class="vrBox">
+      <!-- SIDE BUTTON LEFT -->
+      <a class="side"
+         id="sideButton1"
+         onclick="buttonPress(this)">
+        <div class="sideButtonLeft">
+          <div class="sideButtonInner"></div>
+        </div>
+      </a>
 
-    <!-- TOP BUTTONS -->
-    <div class="vrBoxTop">
-      <div class="statusText"
-           id="status"></div>
-      <div class="buttonsTop">
-        <div class="buttonRow">
-          <!-- ROW 1 -->
-          <a class="button"
-             id="topButton1"
-             onclick="buttonPress(this)">
-            <div class="buttonInside"></div>
-          </a>
-          <a class="button"
-             id="topButton2"
-             onclick="buttonPress(this)">
-            <div class="buttonInside"></div>
-          </a>
-          <a class="button"
-             id="topButton3"
-             onclick="buttonPress(this)">
-            <div class="buttonInside"></div>
-          </a>
-        </div>
-        <!-- ROW 2 -->
-        <div class="buttonRow">
-          <a class="button"
-             id="topButton4"
-             onclick="buttonPress(this)">
-            <div class="buttonInside"></div>
-          </a>
-          <a class="button"
-             id="topButton5"
-             onclick="buttonPress(this)">
-            <div class="buttonInside"></div>
-          </a>
-          <a class="button"
-             id="topButton6"
-             onclick="buttonPress(this)">
-            <div class="buttonInside"></div>
-          </a>
+      <!-- TOP BUTTONS -->
+      <div class="vrBoxTop">
+        <div class="statusText"
+             id="status"></div>
+        <div class="buttonsTop">
+          <div class="buttonRow">
+            <!-- ROW 1 -->
+            <a class="button"
+               id="topButton1"
+               onclick="buttonPress(this)">
+              <div class="buttonInside"></div>
+            </a>
+            <a class="button"
+               id="topButton2"
+               onclick="buttonPress(this)">
+              <div class="buttonInside"></div>
+            </a>
+            <a class="button"
+               id="topButton3"
+               onclick="buttonPress(this)">
+              <div class="buttonInside"></div>
+            </a>
+          </div>
+          <!-- ROW 2 -->
+          <div class="buttonRow">
+            <a class="button"
+               id="topButton4"
+               onclick="buttonPress(this)">
+              <div class="buttonInside"></div>
+            </a>
+            <a class="button"
+               id="topButton5"
+               onclick="buttonPress(this)">
+              <div class="buttonInside"></div>
+            </a>
+            <a class="button"
+               id="topButton6"
+               onclick="buttonPress(this)">
+              <div class="buttonInside"></div>
+            </a>
+          </div>
         </div>
       </div>
+
+      <!-- SIDE BUTTON RIGHT -->
+      <a class="side"
+         id="sideButton2"
+         onclick="buttonPress(this)">
+        <div class="sideButtonRight">
+          <div class="sideButtonInner"></div>
+        </div>
+      </a>
+
     </div>
 
-    <!-- SIDE BUTTON RIGHT -->
-    <a class="side"
-       id="sideButton2"
-       onclick="buttonPress(this)">
-      <div class="sideButtonRight">
-        <div class="sideButtonInner"></div>
+    <div class="controlPanel">
+      <div class="controlContent">
+        <form action="">
+          <div class="controlRow">
+            <div class="controlTitle">Button</div>
+            <select id="buttonSelector">
+              <option value="topButton1">Button 1</option>
+              <option value="topButton2">Button 2</option>
+              <option value="topButton3">Button 3</option>
+              <option value="topButton4">Button 4</option>
+              <option value="topButton5">Button 5</option>
+              <option value="topButton6">Button 6</option>
+            </select>
+          </div>
+          <div class="controlRow">
+            <div class="controlTitle">Hex Color</div>
+            <input id="hexCode" />
+          </div>
+          <button>Send</button>
+        </form>
       </div>
-    </a>
-
+    </div>
   </div>
 
   <!-- scripts -->
@@ -84,23 +109,28 @@
   <script src="https://code.jquery.com/jquery-3.3.1.min.js"
           integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
           crossorigin="anonymous"></script>
+
+  <!--EMITTERS-->
   <script>
     var socket = io();
 
-    function buttonPress(item) {
-      var id = $(item).attr("id");
-
-      //socket emit
+    function buttonPress(button) {
+      var id = $(button).attr('id');
       socket.emit('button press', id);
-
-      //temporary button styling
-      $(item).addClass("active");
-      setTimeout(
-        function() {
-          $(item).removeClass("active");
-        }, 500);
+      buttonPressTemporaryStyle(id);
     }
 
+    $('form').submit(function() {
+      var id = $('#buttonSelector').val();
+      var color = $('#hexCode').val();
+      socket.emit('button color update', id, color);
+      updateButtonColor(id, color);
+      return false;
+    });
+  </script>
+
+  <!-- ON RECEIVE -->
+  <script>
     socket.on('status update', function(msg) {
       $('#status').text(msg);
       setTimeout(
@@ -108,7 +138,18 @@
           $('#status').text('');
         }, 500);
     });
+
+    socket.on('button press', function(item) {
+      buttonPressTemporaryStyle(item);
+    });
+
+    socket.on('button color update', function(id, color) {
+      updateButtonColor(id, color);
+    });
   </script>
+
+  <!-- STYLE FUNCTIONS -->
+  <script src="js/styleFunctions.js"></script>
 
 </body>
 

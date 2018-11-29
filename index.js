@@ -24,6 +24,12 @@ io.on('connection', function(socket) {
 
     //status update
     io.emit('status update', id);
+
+  });
+
+  //on button color change
+  socket.on('button color update', function(id, color) {
+    console.log(id + " color changed to " + color)
   });
 
 });
