@@ -30,7 +30,7 @@ io.on('connection', function(socket) {
 
   //on button color change
   socket.on('button color update', function(id, color) {
-    socket.emit('button color update', id, color);
+    io.emit('button color update', id, color);
     console.log(id + " color changed to " + color)
   });
 
