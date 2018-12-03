@@ -20,6 +20,7 @@ io.on('connection', function(socket) {
   //on button press
   socket.on('button press', function(id) {
     //whatever functions we need to run for VR-BOX or VR Experience
+    io.emit('button press', id);
     console.log(id);
 
     //status update
@@ -29,6 +30,7 @@ io.on('connection', function(socket) {
 
   //on button color change
   socket.on('button color update', function(id, color) {
+    socket.emit('button color update', id, color);
     console.log(id + " color changed to " + color)
   });
 

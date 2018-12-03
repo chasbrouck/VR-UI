@@ -117,14 +117,12 @@
     function buttonPress(button) {
       var id = $(button).attr('id');
       socket.emit('button press', id);
-      buttonPressTemporaryStyle(id);
     }
 
     $('form').submit(function() {
       var id = $('#buttonSelector').val();
       var color = $('#hexCode').val();
       socket.emit('button color update', id, color);
-      updateButtonColor(id, color);
       return false;
     });
   </script>
@@ -139,8 +137,8 @@
         }, 500);
     });
 
-    socket.on('button press', function(item) {
-      buttonPressTemporaryStyle(item);
+    socket.on('button press', function(id) {
+      buttonPressTemporaryStyle(id);
     });
 
     socket.on('button color update', function(id, color) {
